@@ -23,6 +23,9 @@
     "@adonisjs/lucid",
     "@adonisjs/auth"
   ],
+  "namespaces": {
+    "httpControllers": "App/Controllers/Http"
+  },
   "metaFiles": [
     {
       "pattern": "public/**",
