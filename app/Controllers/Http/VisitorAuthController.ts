@@ -1,6 +1,7 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
 import User from 'App/Models/user'
+import { sleep } from 'App/Helpers/sleep'
 export default class VisitorAuthController {
   public async registerIndex({ view }: HttpContextContract) {
     return view.render('register')
@@ -24,5 +25,8 @@ export default class VisitorAuthController {
       password: payload.password,
     })
     return 'Should register xd'
+  }
+  public async loginIndex({ view }: HttpContextContract) {
+    return view.render('login')
   }
 }
