@@ -19,11 +19,11 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import User from 'App/Models/user'
-
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
-})
+  return view.render('home')
+}).middleware('auth')
 Route.get('/register', 'VisitorAuthController.registerIndex')
 Route.post('/register', 'VisitorAuthController.register')
+Route.get('/login', 'VisitorAuthController.loginIndex')
+Route.post('/login', 'VisitorAuthController.login')
+Route.post('/logout', 'VisitorAuthController.logout')
