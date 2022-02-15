@@ -1,15 +1,18 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { rules, schema } from '@ioc:Adonis/Core/Validator'
-import User from 'App/Models/user'
+import Visitor from 'App/Models/visitor'
 import { sleep } from 'App/Helpers/sleep'
 export default class VisitorAuthController {
   public async registerIndex({ view, auth, response }: HttpContextContract) {
     try {
-      await auth.use('web').authenticate()
+      await auth.use('visitor').authenticate()
       return response.redirect('/')
-    } catch {
-      return view.render('register')
-    }
+    } catch {}
+    try {
+      await auth.use('admin').authenticate()
+      return response.redirect('/admin/login')
+    } catch {}
+    return view.render('register')
   }
   public async register({ request }: HttpContextContract) {
     const registerSchema = schema.create({
@@ -25,15 +28,16 @@ export default class VisitorAuthController {
       ]),
     })
     const payload = await request.validate({ schema: registerSchema })
-    await User.create({
+    await Visitor.create({
       email: payload.email,
       password: payload.password,
+      role: 'visitor',
     })
     return 'Should register xd'
   }
   public async loginIndex({ view, auth, response }: HttpContextContract) {
     try {
-      await auth.use('web').authenticate()
+      await auth.use('visitor').authenticate()
       return response.redirect('/')
     } catch {
       return view.render('login')
@@ -49,7 +53,7 @@ export default class VisitorAuthController {
       password: schema.string({ trim: true }, [rules.minLength(6), rules.maxLength(100)]),
     })
     const payload = await request.validate({ schema: registerSchema })
-    await auth.use('web').attempt(payload.email, payload.password)
+    await auth.use('visitor').attempt(payload.email, payload.password)
     return view.render('home')
   }
   public async logout({ response, auth }: HttpContextContract) {

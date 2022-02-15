@@ -4,7 +4,8 @@
  * Feel free to let us know via PR, if you find something broken in this contract
  * file.
  */
-
+import Event from '@ioc:Adonis/Core/Event'
+import Database from '@ioc:Adonis/Lucid/Database'
 declare module '@ioc:Adonis/Core/Event' {
   /*
   |--------------------------------------------------------------------------

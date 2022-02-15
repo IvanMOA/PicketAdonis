@@ -1,7 +1,7 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class AuthsSchema extends BaseSchema {
-  protected tableName = 'users'
+export default class VisitorsSchema extends BaseSchema {
+  protected tableName = 'visitors'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
@@ -9,12 +9,9 @@ export default class AuthsSchema extends BaseSchema {
       table.string('email', 255).notNullable()
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
-
-      /**
-       * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true }).notNullable()
       table.timestamp('updated_at', { useTz: true }).notNullable()
+      table.enum('role', ['visitor', 'admin'])
     })
   }
 

@@ -19,11 +19,19 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import Admin from 'App/Models/admin'
 Route.get('/', async ({ view }) => {
   return view.render('home')
-}).middleware('auth')
+}).middleware('auth:visitor')
 Route.get('/register', 'VisitorAuthController.registerIndex')
 Route.post('/register', 'VisitorAuthController.register')
 Route.get('/login', 'VisitorAuthController.loginIndex')
 Route.post('/login', 'VisitorAuthController.login')
 Route.post('/logout', 'VisitorAuthController.logout')
+Route.group(() => {
+  Route.get('/dashboard', async ({ view }) => {
+    return view.render('admin/dashboard')
+  }).middleware('auth:admin')
+  Route.get('/login', 'AdminAuthController.loginIndex')
+  Route.post('/login', 'AdminAuthController.login')
+}).prefix('/admin')
