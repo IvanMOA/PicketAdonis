@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+  <script src="//unpkg.com/alpinejs" defer></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/d4605588fb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div x-data="{ isSidebarOpen: true }" class='w-screen h-screen flex flex-row bg-gray-100'>
+    <aside :class="{ '-translate-x-full': !isSidebarOpen}" class='absolute md:relative transition-all duration-500 flex flex-col bg-indigo-600 h-full w-72 shadow-md z-10 px-2'>
+      <div class="h-16 flex items-center justify-center tracking-widest text-white text-xl border-indigo-700 border-b-2">PICKY</div>
+      <div class="flex grow flex-col justify-between">
+        <div class="mt-2 flex flex-col space-y-1">
+          <a href="#" class="px-3 py-2 rounded-md hover:bg-indigo-700 flex items-center transition-color duration-100">
+            <i class="fa-solid fa-house text-gray-200 mr-3"></i>
+            <span class="text-gray-200">Dashboard</span>
+          </a>
+          <a href="/admin/events" class="px-3 py-2 rounded-md hover:bg-indigo-700 flex items-center transition-color duration-100">
+            <i class="fa-solid fa-house text-gray-200 mr-3"></i>
+            <span class="text-gray-200">Events</span>
+          </a>
+        </div>
+        <button @click="isSidebarOpen = false" class="mb-4 h-10 w-10 flex items-center justify-center outline-none rounded-full hover:bg-indigo-700 self-center md:hidden">
+          <i class="fa-solid fa-chevron-left text-gray-200"></i>
+        </button>
+      </div>
+    </aside>
+    <div class="flex flex-col w-full">
+      <section class='h-16 shadow-md w-full flex justify-between px-4 items-center bg-white'>
+        <div>
+          <button @click="isSidebarOpen = true" class="outline-none md:hidden h-10 w-10 rounded-full hover:bg-gray-100">
+            <i class="fa-solid fa-bars text-gray-500"></i>
+          </button>
+        </div>
+        <div x-data="{ dropdownMenu: false }" class="relative ml-auto">
+          <button @click="dropdownMenu = !dropdownMenu" @click.away="dropdownMenu = false" class="inline-block cursor-pointer overflow-hidden h-10 w-10 rounded-full transition-all duration-100 ring-2 ring-white ring-offset-2 focus:ring-offset-indigo-200 focus:ring-indigo-700 outline-none" ><img src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" /></button>
+          <div x-show="dropdownMenu" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 py-2 mt-2 bg-white rounded-md shadow px-4 mt-4">
+            <form action="/logout" method="POST" class="flex flex-row items-center space-x-4 pr-4 border-r-2 border-white hover:border-indigo-600 transition transition-all duration-100">
+              <i class="fa-solid fa-arrow-right-from-bracket text-gray-500"></i><button class="text-gray-700" type="submit">Logout</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <main>
+        @!section("content")
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+
