@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import Admin from 'App/Models/admin'
+import Event from 'App/Models/event'
 Route.get('/', async ({ view }) => {
   return view.render('home')
 }).middleware('auth:visitor')
@@ -33,7 +34,7 @@ Route.group(() => {
     return view.render('admin/dashboard')
   }).middleware('auth:admin')
   Route.get('/events', async ({ view }) => {
-    return view.render('events/events_table')
+    return view.render('events/events_table', { events: await Event.all() })
   }).middleware('auth:admin')
   Route.get('/login', 'AdminAuthController.loginIndex')
   Route.post('/login', 'AdminAuthController.login')

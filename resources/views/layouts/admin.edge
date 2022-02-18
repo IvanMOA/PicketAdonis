@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title }}</title>
   <script src="//unpkg.com/alpinejs" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/tailwindcss-jit-cdn"></script>
   <script src="https://kit.fontawesome.com/d4605588fb.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
             <span class="text-gray-200">Dashboard</span>
           </a>
           <a href="/admin/events" class="px-3 py-2 rounded-md hover:bg-indigo-700 flex items-center transition-color duration-100">
-            <i class="fa-solid fa-house text-gray-200 mr-3"></i>
+            <i class="fa-solid fa-calendar text-gray-200 mr-3"></i>
             <span class="text-gray-200">Events</span>
           </a>
         </div>
@@ -28,7 +28,7 @@
         </button>
       </div>
     </aside>
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col w-full overflow-hidden">
       <section class='h-16 shadow-md w-full flex justify-between px-4 items-center bg-white'>
         <div>
           <button @click="isSidebarOpen = true" class="outline-none md:hidden h-10 w-10 rounded-full hover:bg-gray-100">
@@ -44,7 +44,7 @@
           </div>
         </div>
       </section>
-      <main>
+      <main class="w-full">
         @!section("content")
       </main>
     </div>

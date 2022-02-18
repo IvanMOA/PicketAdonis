@@ -35,7 +35,8 @@
     "@adonisjs/shield",
     "@adonisjs/lucid",
     "@adonisjs/auth",
-    "@adonisjs/bouncer"
+    "@adonisjs/bouncer",
+    "@adonisjs/i18n"
   ],
   "namespaces": {
     "httpControllers": "App/Controllers/Http"
@@ -48,7 +49,8 @@
     {
       "pattern": "resources/views/**/*.edge",
       "reloadServer": false
-    }
+    },
+    "resources/lang/**/*.(json|yaml)"
   ],
   "aceProviders": [
     "@adonisjs/repl"
