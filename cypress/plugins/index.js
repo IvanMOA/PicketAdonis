@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 const { spawn } = require('child_process')
+const { handleChildProcessStream } = require('./handleChildProcessStream')
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -9,37 +10,13 @@ module.exports = (on, config) => {
     'db:seed': async (scenarioName) => {
       return new Promise((resolve, reject) => {
         const seedProcess = spawn('node', ['ace', 'db:seed'])
-        seedProcess.stdout.on('data', (data) => {
-          console.log(`stdout: ${data}`)
-        })
-        seedProcess.stderr.on('data', (data) => {
-          console.error(`db:seed: ${data}`)
-        })
-        seedProcess.on('close', (code) => {
-          if (code === 0) {
-            resolve(true)
-          } else {
-            reject(`db:seed child process exited with code ${code}`)
-          }
-        })
+        handleChildProcessStream(seedProcess, 'db:seed', resolve, reject)
       })
     },
     'db:reset': async (scenarioName) => {
       return new Promise((resolve, reject) => {
         const seedProcess = spawn('node', ['ace', 'db:reset'])
-        seedProcess.stdout.on('data', (data) => {
-          console.log(`stdout: ${data}`)
-        })
-        seedProcess.stderr.on('data', (data) => {
-          console.error(`db:seed: ${data}`)
-        })
-        seedProcess.on('close', (code) => {
-          if (code === 0) {
-            resolve(true)
-          } else {
-            reject(`db:seed child process exited with code ${code}`)
-          }
-        })
+        handleChildProcessStream(seedProcess, 'db:reset', resolve, reject)
       })
     },
   })
