@@ -25,6 +25,14 @@
         "repl",
         "web"
       ]
+    },
+    {
+      "file": "./start/view",
+      "environment": [
+        "console",
+        "repl",
+        "web"
+      ]
     }
   ],
   "providers": [

@@ -12,6 +12,7 @@
     "rootDir": "./",
     "sourceMap": true,
     "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "paths": {
       "App/*": [
         "./app/*"

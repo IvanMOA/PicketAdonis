@@ -34,12 +34,7 @@ Route.group(() => {
   Route.get('/dashboard', async ({ view }) => {
     return view.render('admin/dashboard')
   }).middleware('auth:admin')
-  Route.get('/events', async ({ view }) => {
-    console.log(await Database.from('events').count('* as total'))
-    return view.render('events/events_table', {
-      events: await Event.all(),
-    })
-  }).middleware('auth:admin')
+  Route.get('/events', 'AdminEventsController.index').middleware('auth:admin')
   Route.get('/login', 'AdminAuthController.loginIndex')
   Route.post('/login', 'AdminAuthController.login')
 }).prefix('/admin')
