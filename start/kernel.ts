@@ -21,7 +21,6 @@ import AuthMiddleware from 'App/Middleware/Auth'
 | are defined for every HTTP requests.
 |
 */
-Server.middleware.register([() => import('@ioc:Adonis/Core/BodyParser')])
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +43,6 @@ Server.middleware.registerNamed({
 })
 
 Server.middleware.register([
-  // ... other middleware(s)
+  () => import('@ioc:Adonis/Core/BodyParser'),
   () => import('App/Middleware/DetectUserLocale'),
 ])

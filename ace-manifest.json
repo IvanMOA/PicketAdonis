@@ -1,5 +1,29 @@
 {
   "commands": {
+    "db:reset": {
+      "settings": {
+        "loadApp": true,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/DbReset",
+      "commandName": "db:reset",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": []
+    },
+    "migration:fresh": {
+      "settings": {
+        "loadApp": false,
+        "stayAlive": false
+      },
+      "commandPath": "./commands/MigrationFresh",
+      "commandName": "migration:fresh",
+      "description": "",
+      "args": [],
+      "aliases": [],
+      "flags": []
+    },
     "dump:rcfile": {
       "settings": {},
       "commandPath": "@adonisjs/core/build/commands/DumpRc",

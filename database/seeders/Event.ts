@@ -3,6 +3,7 @@ import { EventFactory } from 'Database/factories'
 
 export default class EventSeeder extends BaseSeeder {
   public async run() {
-    await EventFactory.createMany(10)
+    const a = ''
+    await EventFactory.createMany(50)
   }
 }

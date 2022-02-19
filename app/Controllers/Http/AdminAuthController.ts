@@ -11,7 +11,7 @@ export default class AdminAuthController {
       return view.render('admin/admin_login')
     }
   }
-  public async login({ request, auth, response }) {
+  public async login({ request, auth, response }: HttpContextContract) {
     const loginSchema = schema.create({
       email: schema.string({ trim: true }, [
         rules.minLength(10),
@@ -21,7 +21,7 @@ export default class AdminAuthController {
       password: schema.string({ trim: true }, [rules.minLength(6), rules.maxLength(100)]),
     })
     const payload = await request.validate({ schema: loginSchema })
-    await auth.use('admin').attempt(payload.email, payload.password).catch(console.log)
+    await auth.use('admin').attempt(payload.email, payload.password)
     return response.redirect('/admin/dashboard')
   }
 }
