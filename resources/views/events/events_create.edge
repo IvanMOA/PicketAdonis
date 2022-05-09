@@ -1,7 +1,22 @@
 @layout('layouts/admin')
 @set("title", "Events")
 @section("content")
-  <div class="m-4">
-      a
+<div class="w-full flex flex-col lg:flex-row">
+  <div class="w-full w-auto lg:w-1/3 m-4 bg-white drop-shadow-lg p-6 rounded-md">
+      <h1 class="text-xl font-medium text-gray-600 mb-4">Imagen promocional</h1>
+      <img class="rounded-md shadow-md m-0 w-full" src="https://images.unsplash.com/photo-1549213821-4708d624e1d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8MTYlM0E5fGVufDB8fDB8fA%3D%3D&w=1000&q=80" />
+      @!component('components/button', { text: "Cambiar", disabled: false })
   </div>
+  <div class="w-auto lg:w-full  m-4 bg-white drop-shadow-lg p-6 rounded-md">
+      <h1 class="text-xl font-medium text-gray-600">Información del evento</h1>
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+      @!component('components/input', { name: "name", label: 'Nombre', type: 'text', placeholder: 'Tigres VS Borregos', errors: flashMessages.get("errors.name")})
+  </div>
+</div>
 @end
