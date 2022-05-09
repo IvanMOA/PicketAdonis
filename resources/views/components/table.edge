@@ -34,17 +34,17 @@
 </div>
 <div>
 <div class="flex flex-col space-y-4 items-end pt-4">
-<p class="text-sm text-gray-700"> Mostrando eventos del <span class="font-bold text-indigo-600">{{ pagination.currentPage * pagination.perPage }}</span> al <span class="text-indigo-600 font-bold">{{ pagination.currentPage * pagination.perPage + pagination.perPage }}</span> de un total de <span class="text-indigo-600 font-bold">{{ pagination.total }}</span> eventos</p>
+<p class="text-sm text-gray-700"> Mostrando eventos del <span class="font-bold text-indigo-600">{{ (pagination.currentPage  - 1 ) * pagination.perPage }}</span> al <span class="text-indigo-600 font-bold">{{ (pagination.currentPage - 1 ) * pagination.perPage + pagination.perPage }}</span> de un total de <span class="text-indigo-600 font-bold">{{ pagination.total }}</span> eventos</p>
 <nav class="relative z-0 inline-flex rounded-md -space-x-px overflow-x-auto">
-   @component('components/pagination_link', { pagination: pagination, disabled: pagination.currentPage === 1, 'aria-label': 'next page' })
+   @component('components/pagination_link', { pagination: pagination, page: pagination.currentPage - 1, disabled: pagination.currentPage === 1, 'aria-label': 'next page' })
       <i class="fa-solid fa-chevron-left text-gray-500"></i>
    @end
    @each((page) in dottedPaginationRange(pagination.currentPage, pagination.lastPage))
-      @component('components/pagination_link', { pagination: pagination, disabled: page === '...', 'aria-label': `page ${page}` })
+      @component('components/pagination_link', { pagination: pagination, page, disabled: page === '...', 'aria-label': `page ${page}` })
           {{ page }}
       @end
    @end
-   @component('components/pagination_link', { pagination: pagination, disabled: pagination.currentPage === pagination.lastPage, 'aria-label': 'previous page' })
+   @component('components/pagination_link', { pagination: pagination, page: pagination.currentPage + 1, disabled: pagination.currentPage === pagination.lastPage, 'aria-label': 'previous page' })
     <i class="fa-solid fa-chevron-right text-gray-500"></i>
    @end
 </nav>

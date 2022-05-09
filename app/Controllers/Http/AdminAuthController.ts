@@ -21,7 +21,11 @@ export default class AdminAuthController {
       password: schema.string({ trim: true }, [rules.minLength(6), rules.maxLength(100)]),
     })
     const payload = await request.validate({ schema: loginSchema })
-    await auth.use('admin').attempt(payload.email, payload.password)
-    return response.redirect('/admin/dashboard')
+    try {
+      await auth.use('admin').attempt(payload.email, payload.password)
+      return response.redirect('/admin/dashboard')
+    } catch (e) {
+      console.log(e)
+    }
   }
 }

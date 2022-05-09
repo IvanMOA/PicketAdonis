@@ -14,7 +14,7 @@ export default class Admins extends BaseSchema {
         .nullable()
       table.string('email', 255).notNullable().notNullable()
       table.string('password', 180).notNullable().notNullable()
-      table.string('remember_me_token').nullable().notNullable()
+      table.string('remember_me_token').nullable()
       table.timestamp('created_at', { useTz: true }).notNullable()
       table.timestamp('updated_at', { useTz: true }).notNullable().notNullable()
       table.enum('role', ['visitor', 'admin', 'superadmin']).notNullable()
