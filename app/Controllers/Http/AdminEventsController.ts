@@ -9,4 +9,7 @@ export default class AdminEventsController {
       events: await Database.from('events').paginate(page, 10),
     })
   }
+  public async create({ view }: HttpContextContract) {
+    return view.render('events/events_create')
+  }
 }

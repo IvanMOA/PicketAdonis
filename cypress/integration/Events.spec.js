@@ -10,4 +10,11 @@ describe('Events page', () => {
     cy.url().should('contain', 'events')
     cy.get('tbody').find('tr').should('have.length', 10)
   })
+  it('Creates an event', () => {
+    cy.visit('/')
+    cy.adminLogin('superadmin@picket.com', 'apassword')
+    cy.testId('events_link').click()
+    cy.testId('create_event_link').click()
+    cy.url().should('contain', 'create')
+  })
 })

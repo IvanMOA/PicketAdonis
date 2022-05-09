@@ -6,7 +6,8 @@ export default class Zones extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('event_id').unsigned().references('events.id').onDelete('CASCADE')
+      table.integer('place_id').unsigned().references('places.id').onDelete('CASCADE')
+      table.integer('event_id').unsigned().references('events.id').nullable().onDelete('CASCADE')
       table.string('name')
       table.boolean('active')
       table.timestamp('created_at', { useTz: true })

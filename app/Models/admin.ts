@@ -1,6 +1,15 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import {
+  column,
+  beforeSave,
+  BaseModel,
+  hasOne,
+  HasOne,
+  belongsTo,
+  BelongsTo,
+} from '@ioc:Adonis/Lucid/Orm'
+import Dependency from 'App/Models/Dependency'
 
 export default class Admin extends BaseModel {
   @column({ isPrimary: true })
@@ -17,6 +26,9 @@ export default class Admin extends BaseModel {
 
   @column()
   public rememberMeToken?: string
+
+  @belongsTo(() => Dependency)
+  public dependency: BelongsTo<typeof Dependency>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

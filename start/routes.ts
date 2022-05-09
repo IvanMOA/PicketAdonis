@@ -35,6 +35,7 @@ Route.group(() => {
     return view.render('admin/dashboard')
   }).middleware('auth:admin')
   Route.get('/events', 'AdminEventsController.index').middleware('auth:admin')
+  Route.get('/events/create', 'AdminEventsController.create').middleware('auth:admin')
   Route.get('/login', 'AdminAuthController.loginIndex')
   Route.post('/login', 'AdminAuthController.login')
 }).prefix('/admin')
